@@ -61,6 +61,8 @@ export const App: React.FC = () => {
   const [onlineRole, setOnlineRole] = useState<'host' | 'join'>('host');
   const [joinCode, setJoinCode] = useState<string>('');
   const [onlineJoinError, setOnlineJoinError] = useState<string | null>(null);
+  const [onlineHostError, setOnlineHostError] = useState<string | null>(null);
+  const [isHostingLoading, setIsHostingLoading] = useState<boolean>(false);
   const [networkRoomCode, setNetworkRoomCode] = useState<string>('');
   const [networkRole, setNetworkRole] = useState<'host' | 'challenger'>('host');
   const [networkRoomState, setNetworkRoomState] = useState<NetworkRoomState | null>(null);
@@ -134,6 +136,8 @@ export const App: React.FC = () => {
     setIsTimedOut(false);
     setNetworkRoomState(null);
     setOnlineJoinError(null);
+    setOnlineHostError(null);
+    setIsHostingLoading(false);
   }, []);
 
   const handleResetHighScore = () => {
@@ -144,8 +148,9 @@ export const App: React.FC = () => {
   // ===================== ONLINE NETWORK DUEL =====================
 
   const handleStartOnlineDuelHost = async () => {
+    setIsHostingLoading(true);
+    setOnlineHostError(null);
     try {
-      setOnlineJoinError(null);
       const hName = player1Name.trim() || playerName.trim() || 'Host';
       const created = await createDuelRoom(hName, {
         category: filters.category,
@@ -175,7 +180,9 @@ export const App: React.FC = () => {
 
       setScreen('network-lobby');
     } catch (err: any) {
-      setOnlineJoinError(err.message || 'Failed to create room');
+      setOnlineHostError(err.message || 'Failed to create room. Please try again.');
+    } finally {
+      setIsHostingLoading(false);
     }
   };
 
@@ -598,6 +605,8 @@ export const App: React.FC = () => {
           onlineRole={onlineRole}
           joinCode={joinCode}
           onlineJoinError={onlineJoinError}
+          onlineHostError={onlineHostError}
+          isHostingLoading={isHostingLoading}
           onChangeMode={(newMode) => setMode(newMode)}
           onChangeDuelDeviceType={(t) => setDuelDeviceType(t)}
           onChangeOnlineRole={(r) => setOnlineRole(r)}

@@ -16,6 +16,8 @@ interface SetupScreenProps {
   onlineRole: 'host' | 'join';
   joinCode: string;
   onlineJoinError?: string | null;
+  onlineHostError?: string | null;
+  isHostingLoading?: boolean;
   onChangeMode: (mode: GameMode) => void;
   onChangeDuelDeviceType: (type: 'local' | 'online') => void;
   onChangeOnlineRole: (role: 'host' | 'join') => void;
@@ -50,6 +52,8 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
   onlineRole,
   joinCode,
   onlineJoinError,
+  onlineHostError,
+  isHostingLoading = false,
   onChangeMode,
   onChangeDuelDeviceType,
   onChangeOnlineRole,
@@ -252,6 +256,17 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({
                         className="w-full bg-ink border border-rule text-paper px-3 py-2 font-mono text-sm focus:border-paper"
                       />
                     </div>
+                    {onlineHostError && (
+                      <p className="text-paper border border-rule p-2 bg-ink">{onlineHostError}</p>
+                    )}
+                    <button
+                      type="button"
+                      onClick={onStart}
+                      disabled={isHostingLoading}
+                      className="w-full py-3.5 bg-paper text-ink font-mono text-sm font-bold border border-paper hover:opacity-90 disabled:opacity-50 select-none uppercase mt-2"
+                    >
+                      {isHostingLoading ? 'CREATING DUEL ROOM…' : 'CREATE DUEL ROOM & GET CODE'}
+                    </button>
                   </div>
                 ) : (
                   <div className="space-y-3 font-mono text-xs">

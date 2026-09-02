@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0A0A0A;
+  --paper: #FAFAF7;
+  --surface: #1C1C1C;
+  --rule: #3A3A3A;
+  --mute: #8F8F8F;
+}
+
+/* Global hard rectangle override */
+*,
+*::before,
+*::after {
+  border-radius: 0px !important;
+  transition-property: none !important;
+  transition-duration: 0s !important;
+  animation-duration: 0s;
+}
+
+/* Allow explicit indicator pulse animations */
+@keyframes mic-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+}
+
+.animate-mic-pulse {
+  animation: mic-pulse 1s infinite cubic-bezier(0.4, 0, 0.6, 1) !important;
+  animation-duration: 1s !important;
+}
+
+/* Repeating diagonal line texture for incorrect verdict */
+.bg-hatched-dark {
+  background-color: var(--ink);
+  background-image: repeating-linear-gradient(
+    45deg,
+    #2a2a2a 0px,
+    #2a2a2a 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+/* Screen color themes */
+.theme-dark {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.theme-light {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* Disable focus outlines that round corners */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

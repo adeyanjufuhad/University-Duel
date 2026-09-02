@@ -139,7 +139,7 @@ The application strictly obeys a competition-grade **grayscale token system** wi
 
 ## Competition Question Bank
 
-Contains **114 curated competition questions** in [`src/data/question-bank.json`](src/data/question-bank.json) covering:
+Contains **34 official competition questions** in [`src/data/question-bank.json`](src/data/question-bank.json) covering:
 1. **Applied Math**: Percentages, fractions, mental arithmetic, simultaneous equations, quadratic roots, geometric volumes, calculus derivatives, physics kinematics & circuits, clock angles, work-rate problems, and optimization.
 2. **Data Analysis**: Chart interpretation, probability, median/mode calculations, percentage increases, normal distributions ($Z$-scores), leap year probability, ratios, and uniform distributions.
 3. **Verbal Reasoning**: Antonyms, analogies, spelling corrections, logical deductions, box stacking syllogisms, networking protocols (TCP vs UDP), and vocabulary definitions.

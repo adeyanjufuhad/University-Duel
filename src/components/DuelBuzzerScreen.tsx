@@ -264,10 +264,23 @@ export const DuelBuzzerScreen: React.FC<DuelBuzzerScreenProps> = ({
         </div>
 
         {/* Question Area */}
-        <div className="pt-4 pb-2">
+        <div className="pt-4 pb-2 space-y-3">
           <h2 className="font-display text-2xl md:text-4xl leading-tight tracking-wide text-paper">
             {question.question}
           </h2>
+
+          {question.options && question.options.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
+              {question.options.map((opt, i) => (
+                <div key={i} className="p-2.5 bg-surface border border-rule font-mono text-xs text-paper flex items-center gap-2">
+                  <span className="font-bold border border-rule px-1.5 py-0.5 text-mute">
+                    {String.fromCharCode(65 + i)}
+                  </span>
+                  <span className="truncate">{opt}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Shrinking Track below question */}

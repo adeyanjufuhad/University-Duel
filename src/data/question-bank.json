@@ -1,94 +1,1003 @@
 {
   "meta": {
     "title": "University Duel Practice Question Bank",
-    "categories": ["Applied Math", "Data Analysis", "Verbal Reasoning", "General Knowledge"],
-    "difficulty_scale": ["easy", "medium", "hard"],
+    "categories": [
+      "Applied Math",
+      "Data Analysis",
+      "Verbal Reasoning",
+      "General Knowledge"
+    ],
+    "difficulty_scale": [
+      "easy",
+      "medium",
+      "hard"
+    ],
     "format": "buzz-in, free-answer (no multiple choice) — matches the real competition's format",
     "notes": "Original content written for practice purposes. Swap in real past questions here later if the team gets access to them — the id/category/difficulty/question/answer/acceptable_alternates shape should stay the same so the app doesn't need to change."
   },
   "questions": [
-    { "id": "AM01", "category": "Applied Math", "difficulty": "easy", "question": "What is 15% of 200?", "answer": "30" },
-    { "id": "AM02", "category": "Applied Math", "difficulty": "easy", "question": "Simplify 3/4 + 1/8.", "answer": "7/8" },
-    { "id": "AM03", "category": "Applied Math", "difficulty": "easy", "question": "Solve for x: 2x + 5 = 15.", "answer": "5" },
-    { "id": "AM04", "category": "Applied Math", "difficulty": "easy", "question": "What is 7 squared?", "answer": "49" },
-    { "id": "AM05", "category": "Applied Math", "difficulty": "easy", "question": "Convert 3/5 to a percentage.", "answer": "60%" },
-    { "id": "AM06", "category": "Applied Math", "difficulty": "medium", "question": "A train travels 180km in 3 hours. What is its average speed?", "answer": "60 km/h" },
-    { "id": "AM07", "category": "Applied Math", "difficulty": "medium", "question": "Find the next number in the sequence: 2, 6, 12, 20, 30, ?", "answer": "42" },
-    { "id": "AM08", "category": "Applied Math", "difficulty": "medium", "question": "What is the compound interest on ₦10,000 at 10% per annum for 2 years?", "answer": "₦2,100" },
-    { "id": "AM09", "category": "Applied Math", "difficulty": "medium", "question": "Solve for x: x² − 9 = 0.", "answer": "x = 3 or x = -3" },
-    { "id": "AM10", "category": "Applied Math", "difficulty": "medium", "question": "What is the LCM of 12 and 18?", "answer": "36" },
-    { "id": "AM11", "category": "Applied Math", "difficulty": "medium", "question": "A car depreciates by 20% each year. What is its value after 2 years if it started at ₦1,000,000?", "answer": "₦640,000" },
-    { "id": "AM12", "category": "Applied Math", "difficulty": "medium", "question": "What is the probability of rolling a sum of 7 with two standard dice?", "answer": "1/6" },
-    { "id": "AM13", "category": "Applied Math", "difficulty": "medium", "question": "Simplify: 2³ × 2⁴.", "answer": "128 (2⁷)" },
-    { "id": "AM14", "category": "Applied Math", "difficulty": "hard", "question": "A cylinder has radius 7cm and height 10cm. What is its volume? (use π = 22/7)", "answer": "1540 cm³" },
-    { "id": "AM15", "category": "Applied Math", "difficulty": "hard", "question": "Solve the quadratic: x² − 5x + 6 = 0.", "answer": "x = 2 or x = 3" },
-    { "id": "AM16", "category": "Applied Math", "difficulty": "hard", "question": "What is the sum of the first 20 terms of an arithmetic sequence with first term 3 and common difference 4?", "answer": "820" },
-    { "id": "AM17", "category": "Applied Math", "difficulty": "hard", "question": "If log₂(x) = 5, what is x?", "answer": "32" },
-    { "id": "AM18", "category": "Applied Math", "difficulty": "hard", "question": "A boat travels upstream at 8km/h and downstream at 12km/h. Find the boat's speed in still water and the speed of the current.", "answer": "Boat: 10 km/h, Current: 2 km/h" },
-    { "id": "AM19", "category": "Applied Math", "difficulty": "hard", "question": "Differentiate y = 3x² + 2x with respect to x.", "answer": "dy/dx = 6x + 2" },
-    { "id": "AM20", "category": "Applied Math", "difficulty": "hard", "question": "Find the derivative of sin(x)cos(x).", "answer": "cos(2x)" },
-
-    { "id": "DA01", "category": "Data Analysis", "difficulty": "easy", "question": "What is the mean of 2, 4, 6, 8, 10?", "answer": "6" },
-    { "id": "DA02", "category": "Data Analysis", "difficulty": "easy", "question": "What is the mode of 3, 3, 5, 7, 7, 7, 9?", "answer": "7" },
-    { "id": "DA03", "category": "Data Analysis", "difficulty": "easy", "question": "What is the median of 5, 3, 9, 1, 7?", "answer": "5" },
-    { "id": "DA04", "category": "Data Analysis", "difficulty": "easy", "question": "What is 25% expressed as a decimal?", "answer": "0.25" },
-    { "id": "DA05", "category": "Data Analysis", "difficulty": "easy", "question": "A survey of 100 students found 60 prefer tea. What percentage prefer tea?", "answer": "60%" },
-    { "id": "DA06", "category": "Data Analysis", "difficulty": "medium", "question": "What is the range of the data set 12, 45, 7, 89, 23?", "answer": "82" },
-    { "id": "DA07", "category": "Data Analysis", "difficulty": "medium", "question": "In a bar chart, what does the y-axis typically represent?", "answer": "Frequency or value of each category" },
-    { "id": "DA08", "category": "Data Analysis", "difficulty": "medium", "question": "What does standard deviation measure?", "answer": "The spread or dispersion of data around the mean" },
-    { "id": "DA09", "category": "Data Analysis", "difficulty": "medium", "question": "A dataset has values 10, 20, 30, 40, 50. What is the variance?", "answer": "200" },
-    { "id": "DA10", "category": "Data Analysis", "difficulty": "medium", "question": "What type of chart is best for showing parts of a whole?", "answer": "Pie chart" },
-    { "id": "DA11", "category": "Data Analysis", "difficulty": "medium", "question": "What does a correlation coefficient of 0 indicate?", "answer": "No linear relationship between the variables" },
-    { "id": "DA12", "category": "Data Analysis", "difficulty": "medium", "question": "What is the difference between qualitative and quantitative data?", "answer": "Qualitative is categorical/descriptive; quantitative is numerical" },
-    { "id": "DA13", "category": "Data Analysis", "difficulty": "medium", "question": "What chart type is best for showing trends over time?", "answer": "Line chart" },
-    { "id": "DA14", "category": "Data Analysis", "difficulty": "medium", "question": "What is an outlier in a dataset?", "answer": "A value that differs significantly from the other values" },
-    { "id": "DA15", "category": "Data Analysis", "difficulty": "hard", "question": "In a normal distribution, what percentage of data falls within 1 standard deviation of the mean?", "answer": "Approximately 68%" },
-    { "id": "DA16", "category": "Data Analysis", "difficulty": "hard", "question": "What does a p-value of less than 0.05 typically indicate in hypothesis testing?", "answer": "A statistically significant result" },
-    { "id": "DA17", "category": "Data Analysis", "difficulty": "hard", "question": "If Q1 = 10 and Q3 = 30, what is the interquartile range?", "answer": "20" },
-    { "id": "DA18", "category": "Data Analysis", "difficulty": "hard", "question": "What is a Type I error in statistics?", "answer": "Rejecting a true null hypothesis" },
-    { "id": "DA19", "category": "Data Analysis", "difficulty": "hard", "question": "If a dataset is skewed right, where is the mean relative to the median?", "answer": "The mean is greater than the median" },
-    { "id": "DA20", "category": "Data Analysis", "difficulty": "hard", "question": "What does 'regression to the mean' describe?", "answer": "The tendency for extreme values to be followed by more average ones" },
-
-    { "id": "VR01", "category": "Verbal Reasoning", "difficulty": "easy", "question": "Choose a synonym for 'Abundant'.", "answer": "Plentiful" },
-    { "id": "VR02", "category": "Verbal Reasoning", "difficulty": "easy", "question": "What is the antonym of 'Benevolent'?", "answer": "Malevolent" },
-    { "id": "VR03", "category": "Verbal Reasoning", "difficulty": "easy", "question": "Complete the analogy: Doctor is to Hospital as Teacher is to ___.", "answer": "School" },
-    { "id": "VR04", "category": "Verbal Reasoning", "difficulty": "easy", "question": "Give a synonym for 'Happy'.", "answer": "Joyful" },
-    { "id": "VR05", "category": "Verbal Reasoning", "difficulty": "easy", "question": "Which is the odd one out: Circle, Square, Triangle, Red?", "answer": "Red (the others are shapes)" },
-    { "id": "VR06", "category": "Verbal Reasoning", "difficulty": "medium", "question": "Which word doesn't belong: Apple, Banana, Carrot, Mango?", "answer": "Carrot (the others are fruits)" },
-    { "id": "VR07", "category": "Verbal Reasoning", "difficulty": "medium", "question": "Unscramble to form a word: LISETN.", "answer": "LISTEN" },
-    { "id": "VR08", "category": "Verbal Reasoning", "difficulty": "medium", "question": "Give a synonym for 'Meticulous'.", "answer": "Careful / precise" },
-    { "id": "VR09", "category": "Verbal Reasoning", "difficulty": "medium", "question": "What is the antonym of 'Frugal'?", "answer": "Extravagant" },
-    { "id": "VR10", "category": "Verbal Reasoning", "difficulty": "medium", "question": "Complete the analogy: Bird is to Nest as Bee is to ___.", "answer": "Hive" },
-    { "id": "VR11", "category": "Verbal Reasoning", "difficulty": "medium", "question": "What word means the opposite of 'Transparent'?", "answer": "Opaque" },
-    { "id": "VR12", "category": "Verbal Reasoning", "difficulty": "medium", "question": "Complete the analogy: Fish is to Water as Bird is to ___.", "answer": "Air / Sky" },
-    { "id": "VR13", "category": "Verbal Reasoning", "difficulty": "medium", "question": "What is the antonym of 'Genuine'?", "answer": "Fake" },
-    { "id": "VR14", "category": "Verbal Reasoning", "difficulty": "hard", "question": "Find the odd one out: Sonnet, Haiku, Ballad, Metaphor.", "answer": "Metaphor (the others are poem forms)" },
-    { "id": "VR15", "category": "Verbal Reasoning", "difficulty": "hard", "question": "Complete the analogy: Author is to Book as Composer is to ___.", "answer": "Symphony / Music" },
-    { "id": "VR16", "category": "Verbal Reasoning", "difficulty": "hard", "question": "Give a synonym for 'Ephemeral'.", "answer": "Fleeting / transient" },
-    { "id": "VR17", "category": "Verbal Reasoning", "difficulty": "hard", "question": "What is the antonym of 'Verbose'?", "answer": "Concise / terse" },
-    { "id": "VR18", "category": "Verbal Reasoning", "difficulty": "hard", "question": "Fill in the blank: The politician's speech was so ___ that no one understood his stance.", "answer": "Ambiguous / equivocal" },
-    { "id": "VR19", "category": "Verbal Reasoning", "difficulty": "hard", "question": "Identify the correctly spelled word: 'Recieve' or 'Receive'.", "answer": "Receive" },
-    { "id": "VR20", "category": "Verbal Reasoning", "difficulty": "hard", "question": "Give a synonym for 'Ubiquitous'.", "answer": "Omnipresent" },
-
-    { "id": "GK01", "category": "General Knowledge", "difficulty": "easy", "question": "What is the capital of Nigeria?", "answer": "Abuja" },
-    { "id": "GK02", "category": "General Knowledge", "difficulty": "easy", "question": "In what year did Nigeria gain independence?", "answer": "1960" },
-    { "id": "GK03", "category": "General Knowledge", "difficulty": "easy", "question": "What is the largest continent by area?", "answer": "Asia" },
-    { "id": "GK04", "category": "General Knowledge", "difficulty": "easy", "question": "How many states does Nigeria have?", "answer": "36" },
-    { "id": "GK05", "category": "General Knowledge", "difficulty": "easy", "question": "What are the colours of Nigeria's national flag?", "answer": "Green and white" },
-    { "id": "GK06", "category": "General Knowledge", "difficulty": "medium", "question": "What is the longest river in Africa?", "answer": "The Nile" },
-    { "id": "GK07", "category": "General Knowledge", "difficulty": "medium", "question": "Which Nigerian city is known as the 'Centre of Excellence'?", "answer": "Lagos" },
-    { "id": "GK08", "category": "General Knowledge", "difficulty": "medium", "question": "What currency is used in Nigeria?", "answer": "Naira" },
-    { "id": "GK09", "category": "General Knowledge", "difficulty": "medium", "question": "Who was the first President of Nigeria?", "answer": "Nnamdi Azikiwe" },
-    { "id": "GK10", "category": "General Knowledge", "difficulty": "medium", "question": "What is the smallest country in Africa by area?", "answer": "Seychelles" },
-    { "id": "GK11", "category": "General Knowledge", "difficulty": "medium", "question": "Which continental organization is headquartered in Addis Ababa?", "answer": "The African Union" },
-    { "id": "GK12", "category": "General Knowledge", "difficulty": "medium", "question": "Which planet is known as the Red Planet?", "answer": "Mars" },
-    { "id": "GK13", "category": "General Knowledge", "difficulty": "medium", "question": "What does 'GDP' stand for?", "answer": "Gross Domestic Product" },
-    { "id": "GK14", "category": "General Knowledge", "difficulty": "medium", "question": "What does 'FIFA' stand for in English?", "answer": "International Federation of Association Football" },
-    { "id": "GK15", "category": "General Knowledge", "difficulty": "hard", "question": "What is the chemical symbol for gold?", "answer": "Au" },
-    { "id": "GK16", "category": "General Knowledge", "difficulty": "hard", "question": "Who wrote 'Things Fall Apart'?", "answer": "Chinua Achebe" },
-    { "id": "GK17", "category": "General Knowledge", "difficulty": "hard", "question": "What is the highest mountain in Africa?", "answer": "Mount Kilimanjaro" },
-    { "id": "GK18", "category": "General Knowledge", "difficulty": "hard", "question": "In what year was the African Union established?", "answer": "2002" },
-    { "id": "GK19", "category": "General Knowledge", "difficulty": "hard", "question": "What is known as the 'powerhouse of the cell'?", "answer": "The mitochondria" },
-    { "id": "GK20", "category": "General Knowledge", "difficulty": "hard", "question": "Who is credited with inventing the World Wide Web?", "answer": "Tim Berners-Lee" }
+    {
+      "id": "AM01",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "What is 15% of 200?",
+      "answer": "30"
+    },
+    {
+      "id": "AM02",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "Simplify 3/4 + 1/8.",
+      "answer": "7/8"
+    },
+    {
+      "id": "AM03",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "Solve for x: 2x + 5 = 15.",
+      "answer": "5"
+    },
+    {
+      "id": "AM04",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "What is 7 squared?",
+      "answer": "49"
+    },
+    {
+      "id": "AM05",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "Convert 3/5 to a percentage.",
+      "answer": "60%"
+    },
+    {
+      "id": "AM06",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "A train travels 180km in 3 hours. What is its average speed?",
+      "answer": "60 km/h"
+    },
+    {
+      "id": "AM07",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "Find the next number in the sequence: 2, 6, 12, 20, 30, ?",
+      "answer": "42"
+    },
+    {
+      "id": "AM08",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "What is the compound interest on ₦10,000 at 10% per annum for 2 years?",
+      "answer": "₦2,100"
+    },
+    {
+      "id": "AM09",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "Solve for x: x² − 9 = 0.",
+      "answer": "x = 3 or x = -3"
+    },
+    {
+      "id": "AM10",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "What is the LCM of 12 and 18?",
+      "answer": "36"
+    },
+    {
+      "id": "AM11",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "A car depreciates by 20% each year. What is its value after 2 years if it started at ₦1,000,000?",
+      "answer": "₦640,000"
+    },
+    {
+      "id": "AM12",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "What is the probability of rolling a sum of 7 with two standard dice?",
+      "answer": "1/6"
+    },
+    {
+      "id": "AM13",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "Simplify: 2³ × 2⁴.",
+      "answer": "128 (2⁷)"
+    },
+    {
+      "id": "AM14",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "A cylinder has radius 7cm and height 10cm. What is its volume? (use π = 22/7)",
+      "answer": "1540 cm³"
+    },
+    {
+      "id": "AM15",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "Solve the quadratic: x² − 5x + 6 = 0.",
+      "answer": "x = 2 or x = 3"
+    },
+    {
+      "id": "AM16",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "What is the sum of the first 20 terms of an arithmetic sequence with first term 3 and common difference 4?",
+      "answer": "820"
+    },
+    {
+      "id": "AM17",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "If log₂(x) = 5, what is x?",
+      "answer": "32"
+    },
+    {
+      "id": "AM18",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "A boat travels upstream at 8km/h and downstream at 12km/h. Find the boat's speed in still water and the speed of the current.",
+      "answer": "Boat: 10 km/h, Current: 2 km/h"
+    },
+    {
+      "id": "AM19",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "Differentiate y = 3x² + 2x with respect to x.",
+      "answer": "dy/dx = 6x + 2"
+    },
+    {
+      "id": "AM20",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "Find the derivative of sin(x)cos(x).",
+      "answer": "cos(2x)"
+    },
+    {
+      "id": "DA01",
+      "category": "Data Analysis",
+      "difficulty": "easy",
+      "question": "What is the mean of 2, 4, 6, 8, 10?",
+      "answer": "6"
+    },
+    {
+      "id": "DA02",
+      "category": "Data Analysis",
+      "difficulty": "easy",
+      "question": "What is the mode of 3, 3, 5, 7, 7, 7, 9?",
+      "answer": "7"
+    },
+    {
+      "id": "DA03",
+      "category": "Data Analysis",
+      "difficulty": "easy",
+      "question": "What is the median of 5, 3, 9, 1, 7?",
+      "answer": "5"
+    },
+    {
+      "id": "DA04",
+      "category": "Data Analysis",
+      "difficulty": "easy",
+      "question": "What is 25% expressed as a decimal?",
+      "answer": "0.25"
+    },
+    {
+      "id": "DA05",
+      "category": "Data Analysis",
+      "difficulty": "easy",
+      "question": "A survey of 100 students found 60 prefer tea. What percentage prefer tea?",
+      "answer": "60%"
+    },
+    {
+      "id": "DA06",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What is the range of the data set 12, 45, 7, 89, 23?",
+      "answer": "82"
+    },
+    {
+      "id": "DA07",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "In a bar chart, what does the y-axis typically represent?",
+      "answer": "Frequency or value of each category"
+    },
+    {
+      "id": "DA08",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What does standard deviation measure?",
+      "answer": "The spread or dispersion of data around the mean"
+    },
+    {
+      "id": "DA09",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "A dataset has values 10, 20, 30, 40, 50. What is the variance?",
+      "answer": "200"
+    },
+    {
+      "id": "DA10",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What type of chart is best for showing parts of a whole?",
+      "answer": "Pie chart"
+    },
+    {
+      "id": "DA11",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What does a correlation coefficient of 0 indicate?",
+      "answer": "No linear relationship between the variables"
+    },
+    {
+      "id": "DA12",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What is the difference between qualitative and quantitative data?",
+      "answer": "Qualitative is categorical/descriptive; quantitative is numerical"
+    },
+    {
+      "id": "DA13",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What chart type is best for showing trends over time?",
+      "answer": "Line chart"
+    },
+    {
+      "id": "DA14",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "What is an outlier in a dataset?",
+      "answer": "A value that differs significantly from the other values"
+    },
+    {
+      "id": "DA15",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "In a normal distribution, what percentage of data falls within 1 standard deviation of the mean?",
+      "answer": "Approximately 68%"
+    },
+    {
+      "id": "DA16",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "What does a p-value of less than 0.05 typically indicate in hypothesis testing?",
+      "answer": "A statistically significant result"
+    },
+    {
+      "id": "DA17",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "If Q1 = 10 and Q3 = 30, what is the interquartile range?",
+      "answer": "20"
+    },
+    {
+      "id": "DA18",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "What is a Type I error in statistics?",
+      "answer": "Rejecting a true null hypothesis"
+    },
+    {
+      "id": "DA19",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "If a dataset is skewed right, where is the mean relative to the median?",
+      "answer": "The mean is greater than the median"
+    },
+    {
+      "id": "DA20",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "What does 'regression to the mean' describe?",
+      "answer": "The tendency for extreme values to be followed by more average ones"
+    },
+    {
+      "id": "VR01",
+      "category": "Verbal Reasoning",
+      "difficulty": "easy",
+      "question": "Choose a synonym for 'Abundant'.",
+      "answer": "Plentiful"
+    },
+    {
+      "id": "VR02",
+      "category": "Verbal Reasoning",
+      "difficulty": "easy",
+      "question": "What is the antonym of 'Benevolent'?",
+      "answer": "Malevolent"
+    },
+    {
+      "id": "VR03",
+      "category": "Verbal Reasoning",
+      "difficulty": "easy",
+      "question": "Complete the analogy: Doctor is to Hospital as Teacher is to ___.",
+      "answer": "School"
+    },
+    {
+      "id": "VR04",
+      "category": "Verbal Reasoning",
+      "difficulty": "easy",
+      "question": "Give a synonym for 'Happy'.",
+      "answer": "Joyful"
+    },
+    {
+      "id": "VR05",
+      "category": "Verbal Reasoning",
+      "difficulty": "easy",
+      "question": "Which is the odd one out: Circle, Square, Triangle, Red?",
+      "answer": "Red (the others are shapes)"
+    },
+    {
+      "id": "VR06",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "Which word doesn't belong: Apple, Banana, Carrot, Mango?",
+      "answer": "Carrot (the others are fruits)"
+    },
+    {
+      "id": "VR07",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "Unscramble to form a word: LISETN.",
+      "answer": "LISTEN"
+    },
+    {
+      "id": "VR08",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "Give a synonym for 'Meticulous'.",
+      "answer": "Careful / precise"
+    },
+    {
+      "id": "VR09",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "What is the antonym of 'Frugal'?",
+      "answer": "Extravagant"
+    },
+    {
+      "id": "VR10",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "Complete the analogy: Bird is to Nest as Bee is to ___.",
+      "answer": "Hive"
+    },
+    {
+      "id": "VR11",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "What word means the opposite of 'Transparent'?",
+      "answer": "Opaque"
+    },
+    {
+      "id": "VR12",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "Complete the analogy: Fish is to Water as Bird is to ___.",
+      "answer": "Air / Sky"
+    },
+    {
+      "id": "VR13",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "What is the antonym of 'Genuine'?",
+      "answer": "Fake"
+    },
+    {
+      "id": "VR14",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Find the odd one out: Sonnet, Haiku, Ballad, Metaphor.",
+      "answer": "Metaphor (the others are poem forms)"
+    },
+    {
+      "id": "VR15",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Complete the analogy: Author is to Book as Composer is to ___.",
+      "answer": "Symphony / Music"
+    },
+    {
+      "id": "VR16",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Give a synonym for 'Ephemeral'.",
+      "answer": "Fleeting / transient"
+    },
+    {
+      "id": "VR17",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "What is the antonym of 'Verbose'?",
+      "answer": "Concise / terse"
+    },
+    {
+      "id": "VR18",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Fill in the blank: The politician's speech was so ___ that no one understood his stance.",
+      "answer": "Ambiguous / equivocal"
+    },
+    {
+      "id": "VR19",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Identify the correctly spelled word: 'Recieve' or 'Receive'.",
+      "answer": "Receive"
+    },
+    {
+      "id": "VR20",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Give a synonym for 'Ubiquitous'.",
+      "answer": "Omnipresent"
+    },
+    {
+      "id": "GK01",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "What is the capital of Nigeria?",
+      "answer": "Abuja"
+    },
+    {
+      "id": "GK02",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "In what year did Nigeria gain independence?",
+      "answer": "1960"
+    },
+    {
+      "id": "GK03",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "What is the largest continent by area?",
+      "answer": "Asia"
+    },
+    {
+      "id": "GK04",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "How many states does Nigeria have?",
+      "answer": "36"
+    },
+    {
+      "id": "GK05",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "What are the colours of Nigeria's national flag?",
+      "answer": "Green and white"
+    },
+    {
+      "id": "GK06",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "What is the longest river in Africa?",
+      "answer": "The Nile"
+    },
+    {
+      "id": "GK07",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Which Nigerian city is known as the 'Centre of Excellence'?",
+      "answer": "Lagos"
+    },
+    {
+      "id": "GK08",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "What currency is used in Nigeria?",
+      "answer": "Naira"
+    },
+    {
+      "id": "GK09",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Who was the first President of Nigeria?",
+      "answer": "Nnamdi Azikiwe"
+    },
+    {
+      "id": "GK10",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "What is the smallest country in Africa by area?",
+      "answer": "Seychelles"
+    },
+    {
+      "id": "GK11",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Which continental organization is headquartered in Addis Ababa?",
+      "answer": "The African Union"
+    },
+    {
+      "id": "GK12",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Which planet is known as the Red Planet?",
+      "answer": "Mars"
+    },
+    {
+      "id": "GK13",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "What does 'GDP' stand for?",
+      "answer": "Gross Domestic Product"
+    },
+    {
+      "id": "GK14",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "What does 'FIFA' stand for in English?",
+      "answer": "International Federation of Association Football"
+    },
+    {
+      "id": "GK15",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "What is the chemical symbol for gold?",
+      "answer": "Au"
+    },
+    {
+      "id": "GK16",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "Who wrote 'Things Fall Apart'?",
+      "answer": "Chinua Achebe"
+    },
+    {
+      "id": "GK17",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "What is the highest mountain in Africa?",
+      "answer": "Mount Kilimanjaro"
+    },
+    {
+      "id": "GK18",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "In what year was the African Union established?",
+      "answer": "2002"
+    },
+    {
+      "id": "GK19",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "What is known as the 'powerhouse of the cell'?",
+      "answer": "The mitochondria"
+    },
+    {
+      "id": "GK20",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "Who is credited with inventing the World Wide Web?",
+      "answer": "Tim Berners-Lee"
+    },
+    {
+      "id": "UD01",
+      "category": "Verbal Reasoning",
+      "difficulty": "easy",
+      "question": "\"Dentist\" is to \"Teeth\" as \"Chiropodist\" is to",
+      "answer": "Feet",
+      "options": [
+        "Eyes",
+        "Feet",
+        "Skin"
+      ],
+      "explanation": "A dentist specializes in the care of teeth, while a chiropodist (podiatrist) specializes in the care of feet."
+    },
+    {
+      "id": "UD02",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "A dataset has mean 70 and standard deviation 10. What percentage of values lie below 80?",
+      "answer": "84%",
+      "options": [
+        "21%",
+        "42%",
+        "84%"
+      ],
+      "explanation": "Assuming a normal distribution, the value 80 is 1 standard deviation above the mean (Z = 1). Approximately 50% + 34.13% ≈ 84% of the distribution lies below this value."
+    },
+    {
+      "id": "UD03",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Which African leader promoted \"Consciencism\"?",
+      "answer": "Kwame Nkrumah",
+      "options": [
+        "Julius Nyerere",
+        "Kwame Nkrumah",
+        "Haile Selassie"
+      ],
+      "explanation": "Kwame Nkrumah, Ghana's first president, published 'Consciencism: Philosophy and Ideology for Decolonization' in 1964."
+    },
+    {
+      "id": "UD04",
+      "category": "Verbal Reasoning",
+      "difficulty": "hard",
+      "question": "Six boxes are stacked. Box 3 is above Box 6. Box 1 is below Box 4. Box 5 is above Box 2. Which box is at the bottom?",
+      "answer": "Cannot be determined",
+      "options": [
+        "Box 1",
+        "Box 6",
+        "Box 2"
+      ],
+      "explanation": "Based purely on the premises (3 > 6, 4 > 1, 5 > 2), any of Box 6, Box 1, or Box 2 could be at the absolute bottom."
+    },
+    {
+      "id": "UD05",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "The profit P(q) = 4q² + 240q - 100. Find the quantity for the minimum profit.",
+      "answer": "-30",
+      "options": [],
+      "explanation": "Setting the derivative dP/dq = 8q + 240 = 0 gives q = -240 / 8 = -30."
+    },
+    {
+      "id": "UD06",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "From a 52-card deck, what is probability of drawing a spade or a face card?",
+      "answer": "11/26",
+      "options": [
+        "10/26",
+        "8/26",
+        "11/26"
+      ],
+      "explanation": "There are 13 spades and 12 face cards (J, Q, K of each suit), with 3 overlapping spade face cards. P(Spade ∪ Face) = (13 + 12 - 3) / 52 = 22 / 52 = 11/26."
+    },
+    {
+      "id": "UD07",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "Who was the first Secretary-General of the Organization of African Unity (OAU)?",
+      "answer": "Diallo Telli",
+      "options": [
+        "Salim Ahmed Salim",
+        "Diallo Telli",
+        "Amara Essy"
+      ],
+      "explanation": "Diallo Telli of Guinea served as the first Secretary-General of the OAU from 1964 to 1972."
+    },
+    {
+      "id": "UD08",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "At 4:20 AM, what is the exact angle between the hour and minute hands of a clock?",
+      "answer": "10°",
+      "options": [
+        "20°",
+        "10°",
+        "130°"
+      ],
+      "explanation": "Minute hand at 20 min = 20 × 6° = 120°. Hour hand at 4:20 = 4 × 30° + (20 × 0.5°) = 120° + 10° = 130°. Difference = 130° - 120° = 10°."
+    },
+    {
+      "id": "UD09",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "In University grading CGPA stands for",
+      "answer": "Cumulative grade points average",
+      "options": [
+        "Central general pass average",
+        "College grade percentage average",
+        "Cumulative grade points average"
+      ],
+      "explanation": "CGPA standardly stands for Cumulative Grade Point Average."
+    },
+    {
+      "id": "UD10",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Which African food is UNESCO heritage?",
+      "answer": "Couscous",
+      "options": [
+        "Sadza",
+        "Jollof rice",
+        "Couscous"
+      ],
+      "explanation": "In 2020, UNESCO inscribed the knowledge, know-how, and practices pertaining to the production and consumption of couscous onto the Representative List of the Intangible Cultural Heritage of Humanity."
+    },
+    {
+      "id": "UD11",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "What is the power if 100 Joules of work is done in 5 seconds?",
+      "answer": "20W",
+      "options": [
+        "20W",
+        "40W",
+        "10W"
+      ],
+      "explanation": "Power = Work / Time = 100 J / 5 s = 20 Watts."
+    },
+    {
+      "id": "UD12",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "A pizza is divided into 8 slices. If 3 people eat 2 slices each, what fraction remains?",
+      "answer": "1/4",
+      "options": [
+        "1/4",
+        "1/8",
+        "1/2"
+      ],
+      "explanation": "Slices eaten = 3 × 2 = 6 slices. Slices remaining = 8 - 6 = 2 slices. Remaining fraction = 2 / 8 = 1/4."
+    },
+    {
+      "id": "UD13",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "What is the minimum number of edges a graph with 5 vertices must have to guarantee it is connected?",
+      "answer": "4",
+      "options": [
+        "4",
+        "10",
+        "6"
+      ],
+      "explanation": "A tree with n vertices requires n - 1 edges to be connected (5 - 1 = 4)."
+    },
+    {
+      "id": "UD14",
+      "category": "Data Analysis",
+      "difficulty": "hard",
+      "question": "If you randomly pick a year between 1980 and 2020, what is the chance it's a leap year?",
+      "answer": "11/41",
+      "options": [],
+      "explanation": "Inclusive count of years from 1980 to 2020 is (2020 - 1980) + 1 = 41 years. Leap years occur every 4 years: 1980, 1984, 1988, 1992, 1996, 2000, 2004, 2008, 2012, 2016, 2020 (total of 11 leap years). Probability = 11/41."
+    },
+    {
+      "id": "UD15",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Which African country is home to the musician Mory Kanté, famous for the hit song \"Yéké Yéké\"?",
+      "answer": "Guinea",
+      "options": [
+        "Senegal",
+        "Guinea",
+        "Mali"
+      ],
+      "explanation": "Mory Kanté was a Guinean vocalist and kora player."
+    },
+    {
+      "id": "UD16",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "Juliet invests $450 at 20% interest for one year. What is her total amount at year end?",
+      "answer": "$540",
+      "options": [
+        "$540",
+        "$470",
+        "$500"
+      ],
+      "explanation": "Interest = $450 × 0.20 = $90. Total amount = $450 + $90 = $540."
+    },
+    {
+      "id": "UD17",
+      "category": "Data Analysis",
+      "difficulty": "easy",
+      "question": "Calculate the mean of 6, 8, 10, 12, and 14.",
+      "answer": "10",
+      "options": [],
+      "explanation": "Sum = 6 + 8 + 10 + 12 + 14 = 50. Mean = 50 / 5 = 10."
+    },
+    {
+      "id": "UD18",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Who was the Egyptian king whose tomb and treasures were discovered in the Valley of the Kings in 1922?",
+      "answer": "Tutankhamun",
+      "options": [
+        "Akhenaten",
+        "Tutankhamun",
+        "Ramses II"
+      ],
+      "explanation": "Howard Carter discovered the intact tomb of Pharaoh Tutankhamun in November 1922."
+    },
+    {
+      "id": "UD19",
+      "category": "Applied Math",
+      "difficulty": "easy",
+      "question": "What is the speed of a wave with frequency 5 hertz and wavelength 3 metres?",
+      "answer": "15 ms⁻¹",
+      "options": [
+        "10 ms⁻¹",
+        "12 ms⁻¹",
+        "15 ms⁻¹"
+      ],
+      "explanation": "Wave speed v = f × λ = 5 Hz × 3 m = 15 m/s."
+    },
+    {
+      "id": "UD20",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "What is a major challenge of urban transport in Cairo, Egypt?",
+      "answer": "Severe traffic congestion",
+      "options": [
+        "Severe traffic congestion",
+        "Many electric cars",
+        "Lack of bridges"
+      ],
+      "explanation": "Cairo is widely documented as facing severe automotive density and traffic congestion challenges."
+    },
+    {
+      "id": "UD21",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "If 3 machines make 3 widgets in 3 minutes, how long for 100 machines to make 150 widgets?",
+      "answer": "4.5 minutes",
+      "options": [
+        "300 minutes",
+        "4.5 minutes",
+        "100 minutes"
+      ],
+      "explanation": "1 machine produces 1 widget in 3 minutes (rate = 1/3 widget/min per machine). 100 machines produce 100 × (1/3) = 100/3 widgets/min. Time = 150 / (100/3) = 450 / 100 = 4.5 minutes."
+    },
+    {
+      "id": "UD22",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "Initial population: 1 million. Birth rate: 20 per 1000 per year. Find the population after 1 year (no deaths/migration).",
+      "answer": "1,020,000",
+      "options": [
+        "1,020,000",
+        "240,000",
+        "1,040,000"
+      ],
+      "explanation": "Births in 1 year = (20 / 1000) × 1,000,000 = 20,000. New population = 1,000,000 + 20,000 = 1,020,000."
+    },
+    {
+      "id": "UD23",
+      "category": "Data Analysis",
+      "difficulty": "medium",
+      "question": "For numbers evenly distributed between 15 and 75, what is the probability of picking one below 30?",
+      "answer": "1/4",
+      "options": [
+        "1/4",
+        "1/5",
+        "1/2"
+      ],
+      "explanation": "Interval length = 75 - 15 = 60. Sub-interval below 30 = [15, 30], which has length 30 - 15 = 15. Probability = 15 / 60 = 1/4."
+    },
+    {
+      "id": "UD24",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "The Hausa/Fulani men in Nigeria often wear a long gown called",
+      "answer": "Babariga",
+      "options": [
+        "Kaftan",
+        "Agbada",
+        "Babariga"
+      ],
+      "explanation": "Babban Riga (commonly rendered as Babariga) is the voluminous flowing gown traditionally worn by Hausa and Fulani men."
+    },
+    {
+      "id": "UD25",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Which is the odd one: Auxin, Cytokinin, Haemoglobin, Gibberellin?",
+      "answer": "Haemoglobin",
+      "options": [
+        "Auxin",
+        "Cytokinin",
+        "Haemoglobin",
+        "Gibberellin"
+      ],
+      "explanation": "Auxin, Cytokinin, and Gibberellin are plant growth hormones, whereas Haemoglobin is an animal respiratory protein."
+    },
+    {
+      "id": "UD26",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "A charge q = 3C experiences F = 180 Newton. What is the Electric field?",
+      "answer": "60 N/C",
+      "options": [],
+      "explanation": "Electric field E = F / q = 180 N / 3 C = 60 N/C."
+    },
+    {
+      "id": "UD27",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Which of these countries is definitely in Africa, often associated with dense jungles and Tarzan vibes?",
+      "answer": "Congo",
+      "options": [
+        "Peru",
+        "Thailand",
+        "Congo"
+      ],
+      "explanation": "The Republic of the Congo and the DRC are located in Central Africa, dominated by the Congo Basin rainforest."
+    },
+    {
+      "id": "UD28",
+      "category": "Verbal Reasoning",
+      "difficulty": "medium",
+      "question": "TCP is to Reliable Delivery as UDP is to",
+      "answer": "Connectionless",
+      "options": [
+        "Encryption",
+        "Compression",
+        "Connectionless"
+      ],
+      "explanation": "TCP is a connection-oriented, reliable transmission protocol, whereas UDP is connectionless and best-effort."
+    },
+    {
+      "id": "UD29",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "Find the sum of the infinite geometric series: 5 + 2.5 + 1.25 + ...",
+      "answer": "10",
+      "options": [
+        "15",
+        "12.5",
+        "10"
+      ],
+      "explanation": "First term a = 5, common ratio r = 0.5. Sum = a / (1 - r) = 5 / (1 - 0.5) = 5 / 0.5 = 10."
+    },
+    {
+      "id": "UD30",
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "The hydropower station near Jinja on the Victoria Nile is",
+      "answer": "Bujagali",
+      "options": [
+        "Ruzizi II",
+        "Bujagali",
+        "Inga I"
+      ],
+      "explanation": "The Bujagali Power Station is located across the Victoria Nile near Jinja, Uganda."
+    },
+    {
+      "id": "UD31",
+      "category": "Applied Math",
+      "difficulty": "medium",
+      "question": "In a group, 60% own a car, 40% a bike, and 30% both. What percentage owns neither?",
+      "answer": "30%",
+      "options": [
+        "70%",
+        "50%",
+        "30%"
+      ],
+      "explanation": "P(Car ∪ Bike) = P(Car) + P(Bike) - P(Both) = 60% + 40% - 30% = 70%. Owning neither = 100% - 70% = 30%."
+    },
+    {
+      "id": "UD32",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Which South African DJ is credited with globalizing Amapiano music?",
+      "answer": "Kabza De Small",
+      "options": [
+        "DJ Maphorisa",
+        "Kabza De Small",
+        "Black Coffee"
+      ],
+      "explanation": "Kabza De Small is widely referred to as the 'King of Amapiano' and credited as a primary pioneer in globalizing the genre."
+    },
+    {
+      "id": "UD33",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "If 6 workers can build 4 cabinets in 3 days, how many days will it take for 18 workers to build 20 cabinets?",
+      "answer": "5 days",
+      "options": [
+        "4 days",
+        "5 days",
+        "6 days"
+      ],
+      "explanation": "Total work in worker-days = (6 workers × 3 days) / 4 cabinets = 4.5 worker-days per cabinet. To build 20 cabinets takes 20 × 4.5 = 90 worker-days. With 18 workers: 90 / 18 = 5 days."
+    },
+    {
+      "id": "UD34",
+      "category": "Applied Math",
+      "difficulty": "hard",
+      "question": "A toy company's revenue from selling x units is R(x) = 120x - 6x². Find x for maximum revenue.",
+      "answer": "10 units",
+      "options": [],
+      "explanation": "Taking the derivative dR/dx = 120 - 12x = 0 gives 12x = 120, hence x = 10 units."
+    }
   ]
 }

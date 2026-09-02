@@ -106,6 +106,15 @@ export const NetworkDuelVerdictScreen: React.FC<NetworkDuelVerdictScreenProps> =
             <span className="text-mute w-32 shrink-0">Correct Answer:</span>
             <span className="font-bold">{currentQ?.answer}</span>
           </div>
+
+          {currentQ?.explanation && (
+            <div className="p-3.5 border border-rule/50 bg-surface/30 font-mono text-xs text-mute space-y-1 mt-2">
+              <div className="font-bold uppercase tracking-wider text-[11px]">
+                Explanation:
+              </div>
+              <div className="leading-relaxed">{currentQ.explanation}</div>
+            </div>
+          )}
         </div>
 
         {/* Rebound Opportunity Notice */}

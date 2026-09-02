@@ -642,6 +642,7 @@ export const App: React.FC = () => {
           correctAnswer={currentQuestion.answer}
           score={score}
           buzzTime={lastBuzzTime}
+          explanation={currentQuestion.explanation}
           isTimedOut={isTimedOut}
           onNext={handleSoloNextQuestion}
           onHome={handleGoHome}
@@ -680,6 +681,7 @@ export const App: React.FC = () => {
           answeringPlayer={duelState.activeBuzzerPlayer}
           duelState={duelState}
           buzzTime={lastBuzzTime}
+          explanation={currentQuestion.explanation}
           isTimedOut={isTimedOut}
           canRebound={
             Boolean(verdict && !verdict.correct && !duelState.hasReboundAttempted && duelState.activeBuzzerPlayer)

@@ -4,6 +4,8 @@ export interface Question {
   difficulty: string;
   question: string;
   answer: string;
+  options?: string[];
+  explanation?: string;
 }
 
 export interface QuestionBankData {

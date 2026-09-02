@@ -8,6 +8,7 @@ interface DuelVerdictScreenProps {
   answeringPlayer: 1 | 2 | null;
   duelState: DuelState;
   buzzTime: number;
+  explanation?: string;
   isTimedOut?: boolean;
   canRebound: boolean;
   onNext: () => void;
@@ -22,6 +23,7 @@ export const DuelVerdictScreen: React.FC<DuelVerdictScreenProps> = ({
   answeringPlayer,
   duelState,
   buzzTime,
+  explanation,
   isTimedOut = false,
   canRebound,
   onNext,
@@ -169,6 +171,15 @@ export const DuelVerdictScreen: React.FC<DuelVerdictScreenProps> = ({
             <span className="text-mute w-32 shrink-0">Correct Answer:</span>
             <span className="font-bold">{correctAnswer}</span>
           </div>
+
+          {explanation && (
+            <div className="p-3.5 border border-rule/50 bg-surface/30 font-mono text-xs text-mute space-y-1 mt-2">
+              <div className="font-bold uppercase tracking-wider text-[11px]">
+                Explanation:
+              </div>
+              <div className="leading-relaxed">{explanation}</div>
+            </div>
+          )}
         </div>
 
         {/* Rebound Opportunity Box */}

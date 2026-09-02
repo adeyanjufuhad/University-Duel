@@ -160,13 +160,28 @@ export function canonicalForm(text: string): string {
 // Check whether student answer matches question bank answer
 export function evaluateAnswerMatch(
   correctAnswer: string,
-  studentAnswer: string
+  studentAnswer: string,
+  options?: string[]
 ): { isMatch: boolean; reason: string } {
   const cleanStudent = cleanSpokenTranscript(studentAnswer);
   const cleanCorrect = cleanSpokenTranscript(correctAnswer);
 
   const canonStudent = canonicalForm(studentAnswer);
   const canonCorrect = canonicalForm(correctAnswer);
+
+  // 0. Option letter matching if question has options (e.g. "B" or "Option B")
+  if (options && options.length > 0) {
+    const correctIdx = options.findIndex(
+      (opt) => canonicalForm(opt) === canonCorrect || opt.toLowerCase() === correctAnswer.toLowerCase()
+    );
+    if (correctIdx >= 0) {
+      const optionLetter = String.fromCharCode(97 + correctIdx); // 'a', 'b', 'c', ...
+      const spokenLetterPattern = new RegExp(`^(?:option|choice|letter)?\\s*${optionLetter}$`, 'i');
+      if (spokenLetterPattern.test(cleanStudent) || canonStudent === optionLetter) {
+        return { isMatch: true, reason: `Option ${optionLetter.toUpperCase()} accepted.` };
+      }
+    }
+  }
 
   // 1. Direct exact or canonical match
   if (canonStudent === canonCorrect && canonCorrect.length > 0) {

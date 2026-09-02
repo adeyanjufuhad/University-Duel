@@ -7,6 +7,7 @@ interface VerdictScreenProps {
   correctAnswer: string;
   score: ScoreState;
   buzzTime: number;
+  explanation?: string;
   isTimedOut?: boolean;
   onNext: () => void;
   onHome: () => void;
@@ -18,6 +19,7 @@ export const VerdictScreen: React.FC<VerdictScreenProps> = ({
   correctAnswer,
   score,
   buzzTime,
+  explanation,
   isTimedOut = false,
   onNext,
   onHome,
@@ -151,6 +153,15 @@ export const VerdictScreen: React.FC<VerdictScreenProps> = ({
             <span className="text-mute w-28 shrink-0">Answer:</span>
             <span className="font-bold">{correctAnswer}</span>
           </div>
+
+          {explanation && (
+            <div className="p-3.5 border border-rule/50 bg-surface/30 font-mono text-xs text-mute space-y-1 mt-2">
+              <div className="font-bold uppercase tracking-wider text-[11px]">
+                Explanation:
+              </div>
+              <div className="leading-relaxed">{explanation}</div>
+            </div>
+          )}
         </div>
 
         {/* Stats block */}

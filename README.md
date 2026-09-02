@@ -139,11 +139,13 @@ The application strictly obeys a competition-grade **grayscale token system** wi
 
 ## Competition Question Bank
 
-Contains **80 curated competition questions** in [`src/data/question-bank.json`](src/data/question-bank.json) covering:
-1. **Applied Math**: Percentages, fractions, mental arithmetic, simultaneous equations, quadratic roots, geometric volumes, calculus derivatives, and work-rate problems.
-2. **Data Analysis**: Chart interpretation, probability, median/mode calculations, percentage increases, ratios, and distributions.
-3. **Verbal Reasoning**: Antonyms, analogies, spelling corrections, logical deductions, syllogisms, and vocabulary definitions.
-4. **General Knowledge**: Nigerian geography, constitution, historical milestones, African Union, world geography, Nobel laureates, and computer science pioneers.
+Contains **114 curated competition questions** in [`src/data/question-bank.json`](src/data/question-bank.json) covering:
+1. **Applied Math**: Percentages, fractions, mental arithmetic, simultaneous equations, quadratic roots, geometric volumes, calculus derivatives, physics kinematics & circuits, clock angles, work-rate problems, and optimization.
+2. **Data Analysis**: Chart interpretation, probability, median/mode calculations, percentage increases, normal distributions ($Z$-scores), leap year probability, ratios, and uniform distributions.
+3. **Verbal Reasoning**: Antonyms, analogies, spelling corrections, logical deductions, box stacking syllogisms, networking protocols (TCP vs UDP), and vocabulary definitions.
+4. **General Knowledge**: Nigerian geography, constitution, historical milestones, African Union, Pan-African philosophy (Consciencism), UNESCO African heritage foods, world geography, Nobel laureates, and computer science pioneers.
+
+*Questions with multiple-choice options display interactive option reference badges during buzzing, and reveal comprehensive tournament explanations on the verdict screen.*
 
 ---
 

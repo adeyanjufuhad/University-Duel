@@ -47,11 +47,13 @@ Success requires not just knowledge, but exceptional **buzzer speed**, **verbal 
 - **Rebound / Steal Opportunity**: If the first player answers incorrectly, the opponent receives an immediate **Rebound Steal** prompt to buzz in and claim the points!
 - **Match Analytics**: Side-by-side post-duel comparison of Total Points, Questions Correct, Buzzes Won, and Average Reaction Time.
 
-### 3. 2-Device Online Duel (Room Code Pairing)
-- **Host a Match**: Creates a unique **4-digit room code** (e.g. `9350`).
-- **Join from Another Device**: Any contestant on another smartphone, laptop, or tablet on the same network enters the 4-digit code to challenge the host.
+### 3. 2-Device Online Duel (WebRTC Room Code Pairing)
+- **Zero Server Setup**: Powered by client-side WebRTC DataChannels (`peerjs`) with automatic Google STUN discovery and local `BroadcastChannel` fallback.
+- **Works Globally on Any Deployment**: Fully functional when deployed as a static or serverless site on **Vercel**, **Netlify**, **GitHub Pages**, or cloud hosts. No specialized backend or database required!
+- **Host a Match**: Generates an authoritative **4-digit room code** (e.g. `9350`).
+- **Join from Another Phone or Laptop**: Enter the 4-digit code from any smartphone or computer across the internet to connect live.
 - **Synchronized Arena**:
-  - Live server-sent events (SSE) stream keeps both devices in lockstep.
+  - Ultra-low millisecond latency peer-to-peer data channels keep contestants synchronized.
   - Simultaneous countdown and question display.
   - The first device to hit **`BUZZ IN`** wins the floor; the other device is instantly notified that they are **`LOCKED OUT`**.
   - Live speech transcription and automated answer evaluation.

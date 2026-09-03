@@ -1,4 +1,3 @@
-import Peer, { type DataConnection } from 'peerjs';
 import questionBank from '../data/question-bank.json';
 import { evaluateAnswerMatch } from '../utils/answerMatcher';
 
@@ -35,23 +34,17 @@ export interface NetworkRoomState {
   pool?: any[];
 }
 
-const ICE_CONFIG = {
-  iceServers: [
-    { urls: 'stun:stun.l.google.com:19302' },
-    { urls: 'stun:stun1.l.google.com:19302' },
-    { urls: 'stun:stun2.l.google.com:19302' },
-    { urls: 'stun:stun3.l.google.com:19302' },
-    { urls: 'stun:stun4.l.google.com:19302' }
-  ]
-};
-
-// Global singleton state for the active room session
-let currentPeer: Peer | null = null;
-let currentConn: DataConnection | null = null;
+// Global session variables
+let activeEventSource: EventSource | null = null;
+let activeBroadcastChannel: BroadcastChannel | null = null;
 let currentRoomState: NetworkRoomState | null = null;
 let currentRole: 'host' | 'challenger' | null = null;
 let subscriberCallback: ((state: NetworkRoomState) => void) | null = null;
-let broadcastChannel: BroadcastChannel | null = null;
+let hostHeartbeatInterval: any = null;
+
+function getTopicUrl(code: string): string {
+  return `https://ntfy.sh/udeul2026_${code.trim()}`;
+}
 
 function notifySubscribers(state: NetworkRoomState) {
   currentRoomState = { ...state };
@@ -59,8 +52,8 @@ function notifySubscribers(state: NetworkRoomState) {
     try {
       localStorage.setItem(`ud_room_${state.code}`, JSON.stringify(state));
     } catch {}
-    if (broadcastChannel) {
-      broadcastChannel.postMessage({ type: 'ROOM_UPDATE', state });
+    if (activeBroadcastChannel) {
+      activeBroadcastChannel.postMessage({ type: 'ROOM_UPDATE', state });
     }
   }
   if (subscriberCallback) {
@@ -68,10 +61,32 @@ function notifySubscribers(state: NetworkRoomState) {
   }
 }
 
+async function postMessageToRoom(code: string, messageObj: any): Promise<boolean> {
+  // Also send to local BroadcastChannel for same-device tabs
+  if (activeBroadcastChannel) {
+    try {
+      activeBroadcastChannel.postMessage(messageObj);
+    } catch {}
+  }
+
+  try {
+    const topic = getTopicUrl(code);
+    const resp = await fetch(topic, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(messageObj)
+    });
+    return resp.ok;
+  } catch (err) {
+    console.warn('Network post warning:', err);
+    return false;
+  }
+}
+
 function handleIncomingAction(actionMsg: any) {
   if (currentRole !== 'host' || !currentRoomState) return;
 
-  const { action, payload } = actionMsg;
+  const { action, payload, role } = actionMsg;
   const room = currentRoomState;
 
   if (action === 'start') {
@@ -83,11 +98,11 @@ function handleIncomingAction(actionMsg: any) {
     room.transcription = '';
     room.verdict = null;
     notifySubscribers(room);
-    sendToRemote({ type: 'ROOM_UPDATE', state: room });
+    postMessageToRoom(room.code, { type: 'ROOM_UPDATE', state: room });
   } else if (action === 'buzz') {
     if (room.state === 'buzzing') {
       room.state = 'answering';
-      room.buzzedPlayer = payload?.role || 'challenger';
+      room.buzzedPlayer = role || payload?.role || 'challenger';
       room.buzzTime = payload?.reactionTime || 1.0;
       if (room.buzzedPlayer === 'host') {
         room.scores.hostBuzzes += 1;
@@ -97,7 +112,7 @@ function handleIncomingAction(actionMsg: any) {
         room.scores.challengerTimes.push(room.buzzTime);
       }
       notifySubscribers(room);
-      sendToRemote({ type: 'ROOM_UPDATE', state: room });
+      postMessageToRoom(room.code, { type: 'ROOM_UPDATE', state: room });
     }
   } else if (action === 'answer') {
     if (room.state === 'answering') {
@@ -139,7 +154,7 @@ function handleIncomingAction(actionMsg: any) {
 
       room.state = 'verdict';
       notifySubscribers(room);
-      sendToRemote({ type: 'ROOM_UPDATE', state: room });
+      postMessageToRoom(room.code, { type: 'ROOM_UPDATE', state: room });
     }
   } else if (action === 'rebound') {
     if (room.canRebound && room.reboundPlayer) {
@@ -147,7 +162,7 @@ function handleIncomingAction(actionMsg: any) {
       room.buzzedPlayer = room.reboundPlayer;
       room.canRebound = false;
       notifySubscribers(room);
-      sendToRemote({ type: 'ROOM_UPDATE', state: room });
+      postMessageToRoom(room.code, { type: 'ROOM_UPDATE', state: room });
     }
   } else if (action === 'next') {
     const pool = room.pool || questionBank.questions;
@@ -164,7 +179,7 @@ function handleIncomingAction(actionMsg: any) {
       room.state = 'summary';
     }
     notifySubscribers(room);
-    sendToRemote({ type: 'ROOM_UPDATE', state: room });
+    postMessageToRoom(room.code, { type: 'ROOM_UPDATE', state: room });
   } else if (action === 'rematch') {
     const pool = room.pool || questionBank.questions;
     room.index = 0;
@@ -186,44 +201,30 @@ function handleIncomingAction(actionMsg: any) {
       challengerTimes: []
     };
     notifySubscribers(room);
-    sendToRemote({ type: 'ROOM_UPDATE', state: room });
-  }
-}
-
-function sendToRemote(msg: any) {
-  if (currentConn && currentConn.open) {
-    try {
-      currentConn.send(msg);
-    } catch (e) {
-      console.warn('Could not send data across WebRTC data connection:', e);
-    }
+    postMessageToRoom(room.code, { type: 'ROOM_UPDATE', state: room });
   }
 }
 
 function cleanupExistingSession() {
-  if (currentConn) {
-    try {
-      currentConn.close();
-    } catch {}
-    currentConn = null;
+  if (hostHeartbeatInterval) {
+    clearInterval(hostHeartbeatInterval);
+    hostHeartbeatInterval = null;
   }
-  if (currentPeer) {
-    try {
-      currentPeer.destroy();
-    } catch {}
-    currentPeer = null;
+  if (activeEventSource) {
+    activeEventSource.close();
+    activeEventSource = null;
   }
-  if (broadcastChannel) {
+  if (activeBroadcastChannel) {
     try {
-      broadcastChannel.close();
+      activeBroadcastChannel.close();
     } catch {}
-    broadcastChannel = null;
+    activeBroadcastChannel = null;
   }
 }
 
 /**
- * Creates a new WebRTC PeerJS Duel Room.
- * Works seamlessly on any deployed site (Vercel, Netlify, GitHub Pages, or local).
+ * Creates a new Duel Room.
+ * Uses HTTPS Server-Sent Events (SSE) relay that works globally across all mobile devices without NAT/firewall blocks.
  */
 export async function createDuelRoom(
   hostName: string,
@@ -241,127 +242,96 @@ export async function createDuelRoom(
     .sort(() => Math.random() - 0.5)
     .slice(0, settings.rounds || 10);
 
-  return new Promise<{ code: string }>((resolve) => {
-    let resolved = false;
-    const code = Math.floor(1000 + Math.random() * 9000).toString();
-    const peerId = `udeul-${code}`;
+  const code = Math.floor(1000 + Math.random() * 9000).toString();
+  currentRole = 'host';
 
-    currentRole = 'host';
-    currentRoomState = {
-      code,
-      hostName: hostName || 'Host',
-      challengerName: null,
-      settings: {
-        category: settings.category || 'All',
-        difficulty: settings.difficulty || 'All',
-        timeLimit: settings.timeLimit || 15,
-        rounds: pool.length
-      },
-      index: 0,
-      roundsTotal: pool.length,
-      state: 'lobby',
-      buzzedPlayer: null,
-      buzzTime: 0,
-      transcription: '',
-      verdict: null,
-      scores: {
-        host: 0,
-        challenger: 0,
-        hostBuzzes: 0,
-        challengerBuzzes: 0,
-        hostCorrect: 0,
-        challengerCorrect: 0,
-        hostTimes: [],
-        challengerTimes: []
-      },
-      canRebound: false,
-      reboundPlayer: null,
-      currentQuestion: pool[0] || null,
-      pool
-    };
+  currentRoomState = {
+    code,
+    hostName: hostName || 'Host',
+    challengerName: null,
+    settings: {
+      category: settings.category || 'All',
+      difficulty: settings.difficulty || 'All',
+      timeLimit: settings.timeLimit || 15,
+      rounds: pool.length
+    },
+    index: 0,
+    roundsTotal: pool.length,
+    state: 'lobby',
+    buzzedPlayer: null,
+    buzzTime: 0,
+    transcription: '',
+    verdict: null,
+    scores: {
+      host: 0,
+      challenger: 0,
+      hostBuzzes: 0,
+      challengerBuzzes: 0,
+      hostCorrect: 0,
+      challengerCorrect: 0,
+      hostTimes: [],
+      challengerTimes: []
+    },
+    canRebound: false,
+    reboundPlayer: null,
+    currentQuestion: pool[0] || null,
+    pool
+  };
 
-    if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
-      broadcastChannel = new BroadcastChannel(`ud_room_${code}`);
-      broadcastChannel.onmessage = (e) => {
-        if (e.data?.type === 'ACTION') {
-          handleIncomingAction(e.data);
-        } else if (e.data?.type === 'JOIN') {
-          if (currentRoomState) {
-            currentRoomState.challengerName = e.data.challengerName;
-            notifySubscribers(currentRoomState);
-          }
-        }
-      };
-    }
-
-    try {
-      localStorage.setItem(`ud_room_${code}`, JSON.stringify(currentRoomState));
-    } catch {}
-
-    const peer = new Peer(peerId, {
-      debug: 1,
-      config: ICE_CONFIG
-    });
-    currentPeer = peer;
-
-    const timeout = setTimeout(() => {
-      if (!resolved) {
-        resolved = true;
-        // Even if PeerJS signaling is slow, allow local lobby to proceed
-        resolve({ code });
-      }
-    }, 4000);
-
-    peer.on('open', () => {
-      if (!resolved) {
-        resolved = true;
-        clearTimeout(timeout);
-        resolve({ code });
-      }
-    });
-
-    peer.on('connection', (conn) => {
-      currentConn = conn;
-
-      conn.on('open', () => {
-        // Send initial room state to newly connected challenger
+  if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+    activeBroadcastChannel = new BroadcastChannel(`ud_room_${code}`);
+    activeBroadcastChannel.onmessage = (e) => {
+      if (e.data?.type === 'ACTION') {
+        handleIncomingAction(e.data);
+      } else if (e.data?.type === 'JOIN') {
         if (currentRoomState) {
-          conn.send({ type: 'ROOM_UPDATE', state: currentRoomState });
+          currentRoomState.challengerName = e.data.challengerName;
+          notifySubscribers(currentRoomState);
+          postMessageToRoom(code, { type: 'ROOM_UPDATE', state: currentRoomState });
         }
-      });
-
-      conn.on('data', (data: any) => {
-        if (!data) return;
-        if (data.type === 'JOIN') {
-          if (currentRoomState) {
-            currentRoomState.challengerName = data.challengerName || 'Challenger';
-            notifySubscribers(currentRoomState);
-            conn.send({ type: 'ROOM_UPDATE', state: currentRoomState });
-          }
-        } else if (data.type === 'ACTION') {
-          handleIncomingAction(data);
-        }
-      });
-
-      conn.on('close', () => {
-        currentConn = null;
-      });
-    });
-
-    peer.on('error', (err) => {
-      console.warn('Peer error on host:', err);
-      if (!resolved) {
-        resolved = true;
-        clearTimeout(timeout);
-        // Fall back to local room code
-        resolve({ code });
       }
-    });
-  });
+    };
+  }
+
+  // Subscribe to real-time HTTPS SSE stream
+  const sseUrl = `${getTopicUrl(code)}/sse`;
+  const es = new EventSource(sseUrl);
+  activeEventSource = es;
+
+  es.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      if (data && data.message) {
+        const msg = JSON.parse(data.message);
+        if (msg.type === 'JOIN') {
+          if (currentRoomState) {
+            currentRoomState.challengerName = msg.challengerName || 'Challenger';
+            notifySubscribers(currentRoomState);
+            // Immediately broadcast the updated room with both players
+            postMessageToRoom(code, { type: 'ROOM_UPDATE', state: currentRoomState });
+          }
+        } else if (msg.type === 'ACTION') {
+          handleIncomingAction(msg);
+        }
+      }
+    } catch {}
+  };
+
+  // Announce initial room state immediately
+  await postMessageToRoom(code, { type: 'ROOM_UPDATE', state: currentRoomState });
+
+  // Heartbeat to keep room state announced while in lobby
+  hostHeartbeatInterval = setInterval(() => {
+    if (currentRoomState && currentRoomState.state === 'lobby') {
+      postMessageToRoom(code, { type: 'ROOM_UPDATE', state: currentRoomState });
+    }
+  }, 2000);
+
+  return { code };
 }
 
 /**
- * Joins an existing WebRTC Duel Room on another device or same device.
+ * Joins an existing Duel Room on another device or same device.
  */
 export async function joinDuelRoom(
   code: string,
@@ -369,13 +339,11 @@ export async function joinDuelRoom(
 ): Promise<{ ok: boolean; hostName: string; settings: any }> {
   cleanupExistingSession();
   const cleanCode = code.trim();
-  const targetPeerId = `udeul-${cleanCode}`;
-
   currentRole = 'challenger';
 
   if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
-    broadcastChannel = new BroadcastChannel(`ud_room_${cleanCode}`);
-    broadcastChannel.onmessage = (e) => {
+    activeBroadcastChannel = new BroadcastChannel(`ud_room_${cleanCode}`);
+    activeBroadcastChannel.onmessage = (e) => {
       if (e.data?.type === 'ROOM_UPDATE' && e.data.state) {
         notifySubscribers(e.data.state);
       }
@@ -393,8 +361,8 @@ export async function joinDuelRoom(
         try {
           localStorage.setItem(`ud_room_${cleanCode}`, JSON.stringify(parsed));
         } catch {}
-        if (broadcastChannel) {
-          broadcastChannel.postMessage({ type: 'JOIN', challengerName });
+        if (activeBroadcastChannel) {
+          activeBroadcastChannel.postMessage({ type: 'JOIN', challengerName });
         }
       }
     } catch {}
@@ -403,11 +371,10 @@ export async function joinDuelRoom(
   return new Promise<{ ok: boolean; hostName: string; settings: any }>((resolve, reject) => {
     let resolved = false;
 
-    const peer = new Peer({
-      debug: 1,
-      config: ICE_CONFIG
-    });
-    currentPeer = peer;
+    // Connect to real-time HTTPS SSE stream
+    const sseUrl = `${getTopicUrl(cleanCode)}/sse`;
+    const es = new EventSource(sseUrl);
+    activeEventSource = es;
 
     const timeout = setTimeout(() => {
       if (!resolved) {
@@ -419,56 +386,41 @@ export async function joinDuelRoom(
             settings: currentRoomState.settings
           });
         } else {
-          reject(new Error(`Duel room ${cleanCode} not found. Please check the 4-digit code.`));
+          reject(new Error(`Duel room ${cleanCode} not found. Please verify the code on the host device.`));
         }
       }
-    }, 6000);
+    }, 7000);
 
-    peer.on('open', () => {
-      const conn = peer.connect(targetPeerId, { reliable: true });
-      currentConn = conn;
-
-      conn.on('open', () => {
-        conn.send({ type: 'JOIN', challengerName });
-      });
-
-      conn.on('data', (data: any) => {
-        if (!data) return;
-        if (data.type === 'ROOM_UPDATE' && data.state) {
-          notifySubscribers(data.state);
-          if (!resolved) {
-            resolved = true;
-            clearTimeout(timeout);
-            resolve({
-              ok: true,
-              hostName: data.state.hostName || 'Host',
-              settings: data.state.settings
-            });
+    es.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data && data.message) {
+          const msg = JSON.parse(data.message);
+          if (msg.type === 'ROOM_UPDATE' && msg.state) {
+            notifySubscribers(msg.state);
+            if (!resolved) {
+              resolved = true;
+              clearTimeout(timeout);
+              resolve({
+                ok: true,
+                hostName: msg.state.hostName || 'Host',
+                settings: msg.state.settings
+              });
+            }
           }
         }
-      });
+      } catch {}
+    };
 
-      conn.on('error', (err) => {
-        console.warn('Connection error to host:', err);
-      });
-    });
-
-    peer.on('error', (err) => {
-      console.warn('Peer error on challenger:', err);
-      if (!resolved) {
-        resolved = true;
-        clearTimeout(timeout);
-        if (currentRoomState && currentRoomState.hostName) {
-          resolve({
-            ok: true,
-            hostName: currentRoomState.hostName,
-            settings: currentRoomState.settings
-          });
-        } else {
-          reject(new Error(`Could not connect to room ${cleanCode}. Please verify the code on host.`));
-        }
+    // Send JOIN request immediately, and retry every 1.2s until connected
+    postMessageToRoom(cleanCode, { type: 'JOIN', challengerName });
+    const joinInterval = setInterval(() => {
+      if (resolved) {
+        clearInterval(joinInterval);
+      } else {
+        postMessageToRoom(cleanCode, { type: 'JOIN', challengerName });
       }
-    });
+    }, 1200);
   });
 }
 
@@ -498,7 +450,7 @@ export function subscribeToDuelRoom(
  * Dispatches player actions (start, buzz, answer, rebound, next, rematch).
  */
 export async function sendDuelAction(
-  _code: string,
+  code: string,
   role: 'host' | 'challenger',
   action: 'start' | 'buzz' | 'answer' | 'rebound' | 'next' | 'rematch',
   payload?: any
@@ -510,13 +462,9 @@ export async function sendDuelAction(
     payload: { ...payload, role }
   };
 
-  if (broadcastChannel) {
-    broadcastChannel.postMessage(actionMsg);
-  }
-
   if (currentRole === 'host') {
     handleIncomingAction(actionMsg);
   } else {
-    sendToRemote(actionMsg);
+    await postMessageToRoom(code, actionMsg);
   }
 }

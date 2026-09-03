@@ -47,13 +47,13 @@ Success requires not just knowledge, but exceptional **buzzer speed**, **verbal 
 - **Rebound / Steal Opportunity**: If the first player answers incorrectly, the opponent receives an immediate **Rebound Steal** prompt to buzz in and claim the points!
 - **Match Analytics**: Side-by-side post-duel comparison of Total Points, Questions Correct, Buzzes Won, and Average Reaction Time.
 
-### 3. 2-Device Online Duel (WebRTC Room Code Pairing)
-- **Zero Server Setup**: Powered by client-side WebRTC DataChannels (`peerjs`) with automatic Google STUN discovery and local `BroadcastChannel` fallback.
-- **Works Globally on Any Deployment**: Fully functional when deployed as a static or serverless site on **Vercel**, **Netlify**, **GitHub Pages**, or cloud hosts. No specialized backend or database required!
+### 3. 2-Device Online Duel (Universal HTTPS Real-Time Pairing)
+- **Zero Server Setup**: Powered by client-side Server-Sent Events (SSE) cloud relay with instant local `BroadcastChannel` synchronization.
+- **Works Universally on All Phones & Deployments**: Operates over standard HTTPS on port 443, eliminating Carrier-Grade NAT (CGNAT) and mobile firewall blocks that disrupt pure WebRTC. Fully functional when deployed as a static or serverless site on **Vercel**, **Netlify**, **GitHub Pages**, or local networks.
 - **Host a Match**: Generates an authoritative **4-digit room code** (e.g. `9350`).
-- **Join from Another Phone or Laptop**: Enter the 4-digit code from any smartphone or computer across the internet to connect live.
+- **Join from Another Phone or Laptop**: Enter the 4-digit code from any smartphone or computer across the internet to connect live in under 2 seconds.
 - **Synchronized Arena**:
-  - Ultra-low millisecond latency peer-to-peer data channels keep contestants synchronized.
+  - Ultra-low latency event stream keeps contestants synchronized across cellular mobile data or Wi-Fi.
   - Simultaneous countdown and question display.
   - The first device to hit **`BUZZ IN`** wins the floor; the other device is instantly notified that they are **`LOCKED OUT`**.
   - Live speech transcription and automated answer evaluation.

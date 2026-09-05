@@ -296,6 +296,10 @@ export async function createDuelRoom(
   const channel = connect(`ud_duel_${code}`, { as: hostName || 'Host' });
   activeChannel = channel;
 
+  channel.on('open', () => {
+    broadcastToRoom({ type: 'ROOM_UPDATE', state: currentRoomState });
+  });
+
   channel.on('message', ({ message }: { message: string }) => {
     try {
       const data = JSON.parse(message);
@@ -311,8 +315,7 @@ export async function createDuelRoom(
     } catch {}
   });
 
-  // Host sends room state on startup and pulses while in lobby
-  broadcastToRoom({ type: 'ROOM_UPDATE', state: currentRoomState });
+  // Host pulses room state while in lobby so newly connecting challengers get state immediately
   hostLobbyHeartbeat = setInterval(() => {
     if (currentRoomState && currentRoomState.state === 'lobby') {
       broadcastToRoom({ type: 'ROOM_UPDATE', state: currentRoomState });
@@ -380,17 +383,20 @@ export async function joinDuelRoom(
           reject(new Error(`Duel room ${cleanCode} not found. Please verify the code on the host device.`));
         }
       }
-    }, 8000);
+    }, 9000);
 
     channel.on('message', ({ message }: { message: string }) => {
       try {
         const data = JSON.parse(message);
         if (data.type === 'ROOM_UPDATE' && data.state) {
-          if (challengerJoinInterval) {
+          notifySubscribers(data.state);
+
+          // Once host acknowledges challengerName in the room state, stop repeating JOIN
+          if (data.state.challengerName && challengerJoinInterval) {
             clearInterval(challengerJoinInterval);
             challengerJoinInterval = null;
           }
-          notifySubscribers(data.state);
+
           if (!resolved) {
             resolved = true;
             clearTimeout(timeout);
@@ -404,15 +410,17 @@ export async function joinDuelRoom(
       } catch {}
     });
 
-    // Send JOIN pulse and retry every 350ms until host responds with ROOM_UPDATE
     const sendJoin = () => {
       try {
         channel.send(JSON.stringify({ type: 'JOIN', challengerName }));
       } catch {}
     };
 
-    sendJoin();
-    challengerJoinInterval = setInterval(sendJoin, 350);
+    // Wait for the channel to open before sending JOIN, then pulse every 400ms until confirmed
+    channel.on('open', () => {
+      sendJoin();
+      challengerJoinInterval = setInterval(sendJoin, 400);
+    });
   });
 }
 
